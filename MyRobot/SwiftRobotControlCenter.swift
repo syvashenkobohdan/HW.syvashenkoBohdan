@@ -12,95 +12,69 @@ class SwiftRobotControlCenter: RobotControlCenter {
     
     //  Level name setup
     override func viewDidLoad() {
-        levelName = "L55H" //  Level name
+        levelName = "L666H" //  Level name
         super.viewDidLoad()
     }
     
     override func run() {
-        buildPyramid(number: 3)
+        makeZebra(candiesAmount: 2)
     }
     
+    func makeCandyLine(candiesAmount: Int) {
+        while frontIsClear {
+        putCandies(candiesAmount: candiesAmount)
+        move()
+        }
+        putCandies(candiesAmount: candiesAmount)
+    }
     
-    func saveMove() {
-        if frontIsClear{
+    func goToNextLine() {
+        if facingRight {
+            turnRight()
             move()
+            turnRight()
+        }else {
+            turnLeft()
+            move()
+            turnLeft()
+        }
+    }
+    
+    func makeEmptyLine() {
+        while frontIsClear {
+            move()
+        }
+    }
+    
+    func makeZebra(candiesAmount: Int) {
+        while candyInBag {
+            makeCandyLine(candiesAmount: candiesAmount)
+            if frontIsBlocked , rightIsBlocked {
+                break
+            }
+            goToNextLine()
+            makeEmptyLine()
+            if frontIsBlocked , leftIsBlocked{
+                break
+            }
+            goToNextLine()
+        }
+    }
+    
+    func putCandies(candiesAmount: Int) {
+        for _ in 0..<candiesAmount {
+            put()
         }
     }
     
     func turnLeft() {
-        turnRight()
-        turnRight()
-        turnRight()
-    }
-    
-    func reversal() {
-        turnLeft()
-        turnLeft()
-    }
-    
-    func goToStartPosition() {
-        faceUp()
-        frontMove()
-        if frontIsBlocked , leftIsClear {
-            turnLeft()
-            frontMove()
-            turnRight()
-        }
-        reversal()
-        saveMove()
-    }
-    
-    func faceUp() {
-        while !facingUp{
+        for _ in 0..<3 {
             turnRight()
         }
     }
     
-    func goToNext() {
-        reversal()
-        frontMove()
-        turnLeft()
-        saveMove()
-        turnLeft()
-    }
     
-    func buildPyramid(number: Int) {
-        goToStartPosition()
-        var height = countHeight()
-        turnLeft()
-        for i in 1...number {
-            if i == height + 1 {
-                break
-            }
-            
-            for _ in 0..<i {
-                put()
-                saveMove()
-                
-            }
-            goToNext()
-        }
-    }
     
-    func frontMove() {
-        while frontIsClear {
-            move()
-        }
-    }
-    
-    func countHeight() -> Int {
-        var height = 0
-        while frontIsClear {
-            move()
-            height += 1
-        }
-        reversal()
-        for _ in 0..<height{
-            saveMove()
-        }
-        reversal()
-        return height
-    }
 }
 
 
