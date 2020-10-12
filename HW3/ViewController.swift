@@ -11,20 +11,28 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      numberList(number: 5)
+      findDividers(number: 10)
     }
     
-    func numberList(number: Int) {
+    func findDividers(number: Int) {
         var counter = 0
+        var dividers = 0
+        var array: [Int] = []
         for _ in 0..<number {
-            print(counter)
             counter += 1
-        }
-        for _ in 0..<number {
-            counter -= 1
-            print(counter)
+            if number % counter == 0 {
+                array.append(counter)
+                
+                dividers += 1
+                
+            }
             
         }
+        let string = array.map { String($0) }
+            .joined(separator: ", ")
+        
+        print("Number \(number) has \(dividers) dividers . They are \(string)")
     }
+   
 }
 
