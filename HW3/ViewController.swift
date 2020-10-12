@@ -11,9 +11,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      biggerNumber(a: 5, b: 6)
     }
-
+    func biggerNumber(a: Int, b: Int) {
+        if a > b {
+            print(a)
+        }else if a == b {
+            print("Same numbers")
+        }else {
+            print(b)
+        }
+    }
 
 }
 
