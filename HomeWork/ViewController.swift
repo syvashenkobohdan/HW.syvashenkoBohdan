@@ -12,14 +12,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeStairs(amount: 10)
+        makePyramid(amount: 10)
     }
     
     let spacing: CGFloat = 10
     let boxSize: CGFloat = 50
     var verticalLocation: CGFloat = 800
     var horizontalLocation: CGFloat = 50
-    let startHorizontalLocation: CGFloat = 50
+    var startHorizontalLocation: CGFloat = 50
     
     
     func drawBox(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
@@ -33,12 +33,11 @@ class ViewController: UIViewController {
         
         for _ in 0..<amount {
             drawBox(x: horizontalLocation, y: verticalLocation, width: boxSize, height: boxSize)
-            
             horizontalLocation += boxSize + spacing
         }
     }
     
-    func makeStairs(amount: Int) {
+    func makePyramid(amount: Int) {
         var counter = amount
         guard amount > 0 else {
             amountCheck()
@@ -49,6 +48,7 @@ class ViewController: UIViewController {
             makeColumn(amount: counter)
             counter -= 1
             verticalLocation -= boxSize + spacing
+            startHorizontalLocation += (boxSize + spacing) / 2
             horizontalLocation = startHorizontalLocation
         }
         
@@ -63,8 +63,5 @@ class ViewController: UIViewController {
     }
     
 }
-
-
-
 
 
