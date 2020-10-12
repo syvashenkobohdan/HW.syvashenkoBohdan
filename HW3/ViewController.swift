@@ -11,12 +11,20 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      power(a: 6)
+      numberList(number: 5)
     }
-    func power(a: Int) {
-        print(Int(pow(Double(a),Double(2))))
-        print(Int(pow(Double(a),Double(3))))
+    
+    func numberList(number: Int) {
+        var counter = 0
+        for _ in 0..<number {
+            print(counter)
+            counter += 1
+        }
+        for _ in 0..<number {
+            counter -= 1
+            print(counter)
+            
+        }
     }
-
 }
 
