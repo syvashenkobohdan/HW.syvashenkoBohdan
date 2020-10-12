@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawTarget(amount: -10)
+        drawTarget(amount: 10)
     }
     
     func drawBox(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, color: UIColor, radius: CGFloat) {
@@ -19,8 +19,7 @@ class ViewController: UIViewController {
         box.backgroundColor = color
         box.frame = CGRect(x: x, y: y, width: width, height: height)
         view.addSubview(box)
-//        Assignment 2 rounded Target
-//        box.layer.cornerRadius = radius
+        box.layer.cornerRadius = radius
     }
     
     func drawTarget(amount: Int) {
