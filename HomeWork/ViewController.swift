@@ -12,14 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeColumn(amount: 10)
-        
+        makeStairs(amount: 10)
     }
     
-    let horizontalSpacing: CGFloat = 10
+    let spacing: CGFloat = 10
     let boxSize: CGFloat = 50
-    let verticalLocation: CGFloat = 500
-    var horizontalLocation: CGFloat = 10
+    var verticalLocation: CGFloat = 800
+    var horizontalLocation: CGFloat = 50
+    let startHorizontalLocation: CGFloat = 50
+    
     
     func drawBox(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) {
         let box = UIView()
@@ -30,22 +31,40 @@ class ViewController: UIViewController {
     
     func makeColumn(amount: Int) {
         
-        if amount < 0 {
-            amountCheck()
-        }else {
-            for _ in 0..<amount {
-                drawBox(x: horizontalLocation, y: verticalLocation, width: boxSize, height: boxSize)
-                horizontalLocation += boxSize + horizontalSpacing
-            }
+        for _ in 0..<amount {
+            drawBox(x: horizontalLocation, y: verticalLocation, width: boxSize, height: boxSize)
+            
+            horizontalLocation += boxSize + spacing
         }
     }
     
+    func makeStairs(amount: Int) {
+        var counter = amount
+        guard amount > 0 else {
+            amountCheck()
+            return
+        }
+        for _ in 0..<amount {
+            
+            makeColumn(amount: counter)
+            counter -= 1
+            verticalLocation -= boxSize + spacing
+            horizontalLocation = startHorizontalLocation
+        }
+        
+    }
+    
     func amountCheck() {
-        let textBox = UITextField()
+        let textBox = UILabel()
         textBox.frame = CGRect(x: 0, y: 100, width: 300, height: 300)
-        textBox.text = "Error, Amount number is less than 0"
+        textBox.text = "Error, input number is less than 0"
         view.addSubview(textBox)
         
     }
     
 }
+
+
+
+
+
