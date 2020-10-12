@@ -11,16 +11,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      biggerNumber(a: 5, b: 6)
+      power(a: 6)
     }
-    func biggerNumber(a: Int, b: Int) {
-        if a > b {
-            print(a)
-        }else if a == b {
-            print("Same numbers")
-        }else {
-            print(b)
-        }
+    func power(a: Int) {
+        print(Int(pow(Double(a),Double(2))))
+        print(Int(pow(Double(a),Double(3))))
     }
 
 }
