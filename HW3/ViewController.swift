@@ -11,31 +11,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moneyCount(year: 1826, money: 24, percent: 6)
+       countMoney(grant: 700, moneyNeeded: 1000, percent: 3, studentYear: 10)
         
         
       
     }
     
-    
-    func moneyCount(year: Int, money: Double, percent: Double) {
-        let currentYear = 2020
-        var money = money
-        var currentMoney = 0.0
-        var fullMoney = 0
-        var coins = 0
+    func countMoney(grant: Double, moneyNeeded: Double, percent: Double, studentYear: Int) {
         
-        for _ in year..<currentYear {
-            money += (money * (percent / 100))
+        var moneyNeeded = moneyNeeded
+        var money = 0.0
+        var moneyNotEnought = 0.0
+        
+        for i in 0..<studentYear {
+            if i > 0 {
+            moneyNeeded += moneyNeeded * (percent / 100)
+            }
+            money += moneyNeeded
+            
             
         }
-       
-        currentMoney = Double(String(format: "%.2f", money)) ?? 0.0
-        fullMoney = Int(String(format: "%.f", currentMoney)) ?? 0
-        coins = Int((currentMoney - Double(fullMoney)) * 100)
-        print("На данный момент состояние поселенцев составляло бы \(fullMoney)$ и \(coins) центов")
-       
+        moneyNotEnought = money - (grant * Double(studentYear))
+        print("Всего студенту нужно \(String(format: "%.1f", money)) грн. в год . Учитывая стипендию на жизнь студенту в год не хватает \(String(format: "%.1f", moneyNotEnought)) грн.")
     }
+   
 
 }
 
