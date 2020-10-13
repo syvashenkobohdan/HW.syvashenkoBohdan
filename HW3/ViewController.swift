@@ -11,35 +11,31 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        findDividers(number: 6)
+        moneyCount(year: 1826, money: 24, percent: 6)
+        
+        
+      
     }
     
-    func findDividers(number: Int) {
-        var counter = 0
-        var dividers = 0
-        var ideal = 0
-        var array: [Int] = []
-        for _ in 0..<number {
-            counter += 1
-            if number % counter == 0 {
-                array.append(counter)
-                if counter != number {
-                    ideal += counter
-                }
-                dividers += 1
-                
-            }
+    
+    func moneyCount(year: Int, money: Double, percent: Double) {
+        let currentYear = 2020
+        var money = money
+        var currentMoney = 0.0
+        var fullMoney = 0
+        var coins = 0
+        
+        for _ in year..<currentYear {
+            money += (money * (percent / 100))
             
         }
-        let string = array.map { String($0) }
-            .joined(separator: ", ")
-        if number % ideal == 0 {
-            print("Number \(number) is ideal number and has \(dividers) dividers . They are \(string).")
-        }else {
-            print("Number \(number) is not ideal number and has \(dividers) dividers . They are \(string).")
-        }
-        
+       
+        currentMoney = Double(String(format: "%.2f", money)) ?? 0.0
+        fullMoney = Int(String(format: "%.f", currentMoney)) ?? 0
+        coins = Int((currentMoney - Double(fullMoney)) * 100)
+        print("На данный момент состояние поселенцев составляло бы \(fullMoney)$ и \(coins) центов")
+       
     }
-    
+
 }
 
