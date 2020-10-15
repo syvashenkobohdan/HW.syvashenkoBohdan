@@ -8,25 +8,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       print(check(name: "Владимиро"))
+        print(makeStr(str: "BohdanSyvashenko"))
     }
-    func check(name: String) -> String {
-        var suffixIch: Bool = false
-        var suffixNa: Bool = false
-        suffixIch = name.hasSuffix("ич")
-        suffixNa = name.hasSuffix("на")
+    func makeStr(str: String) -> String  {
         
-        if suffixIch {
-            return "You're name \(name) has suffix (ич)"
-        }else if suffixNa {
-            return "You're name \(name) has suffix (на)"
-        }else {
-            return "You're name has no suffix"
+        var counter = 0
+        var stringToReturn: String = ""
+        var strArray: [Substring] = []
+        var str3: String = str
+        for chr in str {
+            
+            if chr.isUppercase , counter != 0 {
+                str3.insert(contentsOf: " ", at: str.firstIndex(of: chr)!)
+            }
+            counter += 1
         }
+        
+        
+        strArray = str3.split(separator: " ")
+        stringToReturn = "You're name is \(strArray[0]). \nYou're surname is \(strArray[1]). \nYou're fullname is \(str3)."
+        
+        return stringToReturn
     }
-
+    
 }
 
