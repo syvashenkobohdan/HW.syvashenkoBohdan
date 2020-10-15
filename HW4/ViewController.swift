@@ -11,9 +11,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       print(countSymbols(name: "Bohdan"))
     }
-
+    func countSymbols(name: String) -> Int {
+        return name.count
+    }
 
 }
 
