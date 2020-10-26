@@ -11,18 +11,21 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(returnReversed(input: "Ось"))
+        print(calcStuff(number: "231231"))
     }
     
-    func returnReversed(input: String) -> String {
-        var reversedStr: String = ""
-        
-        for chr in input {
-            reversedStr.insert(chr, at: reversedStr.startIndex)
-            
+    func calcStuff(number: String) -> String {
+        var start = number
+        var counter = start.count
+        for _ in start {
+            counter -= 1
+            if counter % 3 == 0 , counter != 0 {
+                start.insert(",", at: start.index(start.endIndex, offsetBy: -counter))
+            }
         }
-        return "Если перевернуть строку \(input) получим строку \(reversedStr)"
-    }
+        return start
+
+}
     
     
 }
