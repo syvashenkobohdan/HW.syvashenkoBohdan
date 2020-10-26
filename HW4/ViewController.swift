@@ -11,28 +11,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(makeStr(str: "BohdanSyvashenko"))
-    }
-    func makeStr(str: String) -> String  {
-        
-        var counter = 0
-        var stringToReturn: String = ""
-        var strArray: [Substring] = []
-        var str3: String = str
-        for chr in str {
-            
-            if chr.isUppercase , counter != 0 {
-                str3.insert(contentsOf: " ", at: str.firstIndex(of: chr)!)
-            }
-            counter += 1
-        }
-        
-        
-        strArray = str3.split(separator: " ")
-        stringToReturn = "You're name is \(strArray[0]). \nYou're surname is \(strArray[1]). \nYou're fullname is \(str3)."
-        
-        return stringToReturn
+        print(returnReversed(input: "Ось"))
     }
     
+    func returnReversed(input: String) -> String {
+        var reversedStr: String = ""
+        
+        for chr in input {
+            reversedStr.insert(chr, at: reversedStr.startIndex)
+            
+        }
+        return "Если перевернуть строку \(input) получим строку \(reversedStr)"
+    }
+    
+    
 }
+
 
