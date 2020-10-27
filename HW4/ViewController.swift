@@ -11,61 +11,38 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(passwordCheck(password: "asda1231"))
+        print(sorter(array: [9, 2, 6, 1, 3, 5, 1, 2]))
     }
     
-    func passwordCheck(password: String) -> String {
-        var score: Int = 5
-        var checks: [String: Bool] = ["isNumber": false, "isLetter": false, "isSymbol": false, "isUppercase": false, "isLowercase": false]
-        var returnString: String = ""
+    func sorter(array: [Int]) -> [Int] {
+        var sortedArray = array
+        var dublicateErased = [Int]()
         
-        for chr in password {
-            if chr.isNumber {
-                checks["isNumber"]  = true
-            } else if chr.isLetter, chr.isUppercase {
-                checks["isLetter"] = true
-                checks["isUppercase"] = true
-            } else if chr.isLetter, chr.isLowercase {
-                checks["isLetter"] = true
-                checks["isLowercase"] = true
-            } else if chr.isPunctuation || chr.isSymbol {
-                checks["isSymbol"] = true
-            }
+        
+        for firstIndex in 0..<array.count {
+            let passes = (sortedArray.count - 1) - firstIndex
             
+            
+            for secondIndex in 0..<passes {
+                let key = sortedArray[secondIndex]
+                
+                
+                if (key > sortedArray[secondIndex + 1]) {
+                    sortedArray.swapAt(secondIndex, secondIndex + 1)
+                }
+            }
         }
         
-        if password != "" {
-            
-            if !checks["isLowercase"]! {
-                returnString += "Missing lowercased symbols\n"
-                score -= 1
+        
+        for value in sortedArray {
+            if dublicateErased.contains(value) == false {
+                dublicateErased.append(value)
             }
-            if !checks["isUppercase"]! {
-                returnString += "Missing uppercased symbols\n"
-                score -= 1
-            }
-            if !checks["isSymbol"]! {
-                returnString += "Missing special symbols\n"
-                score -= 1
-            }
-            if !checks["isNumber"]! {
-                returnString += "Missing numbers\n"
-                score -= 1
-            }
-            if !checks["isLetter"]! {
-                returnString += "Missing letters\n"
-                score -= 1
-            }
-            
-            returnString += "\nPassword Score: \(score)"
-            
-        } else {
-            return "Please enter password"
         }
         
-        return returnString
+        return dublicateErased
+        
     }
-    
     
     
 }
