@@ -11,14 +11,21 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(transliterate(str: "ДоРОГА"))
+        print( search(suff: "da"))
     }
     
-    func transliterate(str: String) -> String {
-        return str
-                    .applyingTransform(.toLatin, reverse: false)?
-                    .applyingTransform(.stripDiacritics, reverse: false) ?? str
-                    
+    func search(suff: String) -> [String]{
+        var array = ["Lada", "Sedan", "Baklazhan"]
+        var newArray = [String]()
+        
+        for i in array {
+            
+            if i.contains(suff) {
+                newArray.append(i)            }
+            
+            
+        }
+        return newArray
     }
     
     
