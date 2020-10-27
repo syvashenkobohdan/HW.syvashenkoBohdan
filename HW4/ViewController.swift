@@ -11,21 +11,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print( search(suff: "da"))
+        print(antimat(mat: "Hello fuck"))
     }
     
-    func search(suff: String) -> [String]{
-        var array = ["Lada", "Sedan", "Baklazhan"]
-        var newArray = [String]()
+    func antimat(mat: String) -> String {
+        var mats = ["fuck", "fak"]
+        var antimate = ""
         
-        for i in array {
-            
-            if i.contains(suff) {
-                newArray.append(i)            }
-            
-            
+        for i in mats {
+            if mat.contains(i) {
+                antimate = mat.replacingOccurrences(of: i, with: "***")
+            }
         }
-        return newArray
+        return antimate
+        
     }
     
     
